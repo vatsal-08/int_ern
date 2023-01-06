@@ -1,0 +1,13 @@
+{% extends 'jobs/index.html' %}
+{% block content %}
+    {% for job in jobs %}
+        <div class="class-entry">
+            <h2><a href="{% url 'jobs-detail' job.pk %}">{{job.title}}</a> by <i>{{job.author}}</i> with location {{job.location}}</h2>
+            {% if job.desc|length > 20 %}
+                <p>{{job.desc|slice:"20"}}...</p>
+            {% else %}
+                <p>{{job.desc}}</p>
+            {% endif %}
+            </div>
+        {% endfor %}
+{% endblock content %}

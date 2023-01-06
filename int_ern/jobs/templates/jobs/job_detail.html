@@ -1,0 +1,17 @@
+{% extends 'jobs/index.html' %}
+{% block content %}
+    {% if user.is_authenticated %}
+        <div class="post-entry">
+            <h2>{{jobs.title}} by <i>{{jobs.author}}</i></h2>
+            <p>Job Description: {{jobs.desc}} </p>
+            <p>Contact:{{jobs.contact}} </p>
+        </div> 
+        {% if user == jobs.author %}
+            <p><a href="{% url 'jobs-update' jobs.pk %}" class="btn btn-primary">Edit</a> <a href="{% url 'jobs-delete' jobs.pk %}"  class="btn btn-danger" >Delete</a></p>
+        {% endif %}
+    {% else %}
+        <h1>Not Logged In!!!</h1>
+        <a href="{% url 'signup' %}">Don't have  account??</a>
+    {% endif %}
+
+{% endblock content %}
